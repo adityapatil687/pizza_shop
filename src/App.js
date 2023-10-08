@@ -1,25 +1,48 @@
-import logo from './logo.svg';
 import './App.css';
+import ReactDOM from 'react-dom';
+
+import Navbar from './components/Navbar';
+
+import MenuScreen from "./pages/MenuScreen";
+import  HomeScreen  from './pages/HomeScreen';
+import LoginScreen from './pages/LoginScreen';
+import CartScreen from './pages/CartScreen';
+
+import {
+  createBrowserRouter, 
+  createRoutesFromElements,
+  Route, 
+  RouterProvider,
+  NavLink,
+  Outlet
+} from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <RouterProvider router={router} />
+    );
+  }
 
 export default App;
+
+const RootLayout = () =>
+{
+  return(
+    <>
+      {ReactDOM.createPortal(<Navbar />, document.getElementById('navbar-container'))}
+      <Outlet />
+    </>
+  )
+}
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      
+      <Route index element={<HomeScreen />} />
+      <Route path="menu" element={<MenuScreen />} />
+      <Route path="login" element={<LoginScreen />} />
+      <Route path="cart" element={<CartScreen />} />
+    </Route>
+  )
+)
