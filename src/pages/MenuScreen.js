@@ -1,9 +1,11 @@
-import { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import MenuCard from "../components/MenuCard"
 import { CartContext } from "../context/CartContextProvider"
+import { Slide, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MenuScreen = () => {
-    
+  const [showToast, setShowToast] = useState(false);
     const [pizzaMenu, setPizzaMenu] = useState(
       [
         {
@@ -62,7 +64,18 @@ const MenuScreen = () => {
       let element = document.getElementById('root')
       element.classList.add("my-auto")
   },[])
-
+  const showToastMessage = () => {
+    toast.success('Added to cart', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        className: 'border rounded bg-light-subtle text-light-emphasis',
+        autoClose: 1000,
+        pauseOnHover: false,
+        transition: Slide,
+        progressStyle: {backgroundColor: "#198754"},
+        icon: false,
+        bodyClassName: 'bg-light-subtle',
+    });
+};
     return(
       <>
           <div className =" my-5 ">
@@ -72,7 +85,7 @@ const MenuScreen = () => {
                 pizzaMenu.map(( currentIndex) => 
                 {
                   return(
-                      <MenuCard key={currentIndex.id} pizzaMenu={currentIndex} />
+                      <MenuCard key={currentIndex.id} pizzaMenu={currentIndex} showToastMessage={showToastMessage}/>
                   )
                 }
               )
@@ -80,7 +93,7 @@ const MenuScreen = () => {
             </div>
             </div>
           </div>
-        
+        <ToastContainer />
       </>
     )
 }

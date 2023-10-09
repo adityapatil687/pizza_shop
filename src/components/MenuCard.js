@@ -2,7 +2,7 @@ import { cardActionAreaClasses } from "@mui/material"
 import { useState, useEffect, useContext } from "react"
 import { CartContext } from "../context/CartContextProvider"
 
-const MenuCard = ({pizzaMenu}) =>
+const MenuCard = ({pizzaMenu, showToastMessage}) =>
 {
 
   const {cartData, setCartData} = useContext(CartContext)
@@ -43,7 +43,7 @@ const MenuCard = ({pizzaMenu}) =>
 
     const addToCartHandler = () =>
     {
-    
+      showToastMessage()
       // Create a new pizza object with size information
       const pizzaToAdd = {
         id: pizzaMenu.id,
