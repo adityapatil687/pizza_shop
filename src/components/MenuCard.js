@@ -1,12 +1,20 @@
-import { useState, useEffect } from "react"
+import { cardActionAreaClasses } from "@mui/material"
+import { useState, useEffect, useContext } from "react"
+import { CartContext } from "../context/CartContextProvider"
 
 const MenuCard = ({pizzaMenu}) =>
 {
+
+  const {cartData, setCartData} = useContext(CartContext)
+
   const [PizzaName, setPizzaName] = useState(pizzaMenu.name)
-  const [PizzaUrl, setPizzaUrl] = useState(pizzaMenu.imgURL)
+  const [PizzaUrl, setPizzaUrl] = useState(pizzaMenu.url)
   const [PizzaPrice, setPrice] = useState(pizzaMenu.price)
 
   const [selectedSize,setSelectedSize] = useState("Small") // default selected size
+
+  
+  
 
   useEffect(()=>
   {
@@ -33,28 +41,38 @@ const MenuCard = ({pizzaMenu}) =>
       setSelectedSize(e.target.text)
     }
 
-    const addToCartHandler = (name, price, url, size) =>
+    const addToCartHandler = () =>
     {
-      let data = {name:"", price: null, url: "", size: ""}
+    
+      // Create a new pizza object with size information
+      const pizzaToAdd = {
+        id: pizzaMenu.id,
+        name: pizzaMenu.name,
+        price: PizzaPrice,
+        url: pizzaMenu.url,
+        size: selectedSize, // Add the selected size
+      };
 
-      data.name = name
-      data.price = price
-      data.size = size
-      data.url = url
+      // Check if the pizza with the same id and size already exists in cartData
+      const existingPizzaIndex = cartData.findIndex((item) =>
+        item.id === pizzaToAdd.id && item.size === pizzaToAdd.size
+      );
 
-      //isAddedAlready() if true push to local storage
-      console.log(data)
+      if (existingPizzaIndex !== -1) {
+        // If the pizza with the same id and size already exists, update its quantity instead of adding a new one
+        const updatedCartData = [...cartData];
+        updatedCartData[existingPizzaIndex].quantity += 1;
+        setCartData(updatedCartData);
+      } else {
+        // If it doesn't exist, add the new pizza to cartData
+        setCartData([...cartData, { ...pizzaToAdd, quantity: 1 }]);
+      }
     }
-
-    const isAddedAlready=()=>{
-        // check local storage
-    }
-   
 
   return(
     <div className ="col-lg-4  text-center  " >
   <div className ="mb-5 border rounded bg-light-subtle">
-    <img src={pizzaMenu.imgURL} className ="my-2" height="250vw" width="250vw" alt="..." />
+    <img src={pizzaMenu.url} className ="my-2" height="250vw" width="250vw" alt="..." />
     <div className ="row mx-4">
       <div className ="col py-1 text-start">
         <p>{PizzaName}</p>
@@ -77,7 +95,10 @@ const MenuCard = ({pizzaMenu}) =>
         </ul>
       </div>
     </div>
-    <button type="button" className ="btn btn-success col-10 py-2 mb-3" onClick={()=>{addToCartHandler(PizzaName, PizzaPrice, PizzaUrl, selectedSize)}}>Add to cart</button>
+    
+      <button type="button" className ="btn btn-success col-10 py-2 mb-3" onClick={()=>{addToCartHandler()}}>Add to cart</button>
+    
+    
   </div>
   </div>
   )

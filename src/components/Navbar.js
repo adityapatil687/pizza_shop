@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ThemeToggleBtn from "./ThemeToggleBtn"
 import { NavLink } from "react-router-dom";
+import { CartContext } from "../context/CartContextProvider";
 
 const Navbar = () => {
 
-    const [cartLength,setCartLength] = useState(null)
-    useEffect(()=>
-    {
-      //setCartLength(localStorage.getItem("cartLength"))
-      console.log(localStorage.getItem("cartLength"))
-    },[localStorage.getItem("cartLength")])
+  const {cartData, setCartData} = useContext(CartContext)
+
     return(
         <div className="container-fluid">
           <a className="navbar-brand"># pizza</a>
@@ -48,12 +45,9 @@ const Navbar = () => {
                   <NavLink className="nav-link " aria-current="Cart" to="cart">
                     Cart
                     <span className="badge bg-secondary bg-success mx-lg-1">
-                      {
-                        (localStorage.getItem('cartLength') > 0 && localStorage.getItem('cartLength') !== null) &&
-                        (
-                           localStorage.getItem('cartLength')
-                        )
-                      }
+                      {cartData.length > 0 && (
+                        cartData.reduce((totalQuantity, item) => totalQuantity + item.quantity, 0)
+                     )}
                     </span>
                   </NavLink>
                 }
