@@ -4,6 +4,9 @@ const LoginScreen = () => {
   useEffect(()=>{
     let element = document.getElementById('root')
     element.classList.add("my-auto")
+
+    let pageTitle = document.getElementById('pageTitle')
+    pageTitle.innerHTML='Login'
 },[])
     return ( 
         <>

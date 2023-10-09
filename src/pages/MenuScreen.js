@@ -63,6 +63,8 @@ const MenuScreen = () => {
     useEffect(()=>{
       let element = document.getElementById('root')
       element.classList.add("my-auto")
+      let pageTitle = document.getElementById('pageTitle')
+      pageTitle.innerHTML='Menu'
   },[])
   const showToastMessage = () => {
     toast.success('Added to cart', {

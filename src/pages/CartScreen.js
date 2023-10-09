@@ -17,6 +17,9 @@ const CartScreen = () => {
             let element = document.getElementById('root')
             element.classList.remove("my-auto")
             console.log(cartData)
+
+            let pageTitle = document.getElementById('pageTitle')
+            pageTitle.innerHTML='Cart'
     },[])
 
     useEffect(() => {

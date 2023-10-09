@@ -5,6 +5,9 @@ const HomeScreen = () => {
   useEffect(()=>{
     let element = document.getElementById('root')
     element.classList.add("my-auto")
+
+    let pageTitle = document.getElementById('pageTitle')
+    pageTitle.innerHTML='Pizza Place'
 },[])
   return (
     <div className="row" data-aos="fade-up" data-aos-duration="1000">
