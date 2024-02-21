@@ -112,7 +112,7 @@ const CartScreen = () => {
 
   async function displayRazorpay() {
     const res = await loadScript(
-      "https://checkout.razorpay.com/v1/checkout.js"
+      "https://duo3guoh9g.execute-api.ap-south-1.amazonaws.com/staging/checkout"
     );
 
     if (!res) {
