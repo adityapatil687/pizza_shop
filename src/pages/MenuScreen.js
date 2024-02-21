@@ -9,7 +9,7 @@ import axios from "axios";
 
 const MenuScreen = () => {
   const [showToast, setShowToast] = useState(false);
-const endpoint = "http://localhost/menu"
+const endpoint = "https://duo3guoh9g.execute-api.ap-south-1.amazonaws.com/staging/menu"
   // const [pizzaMenu, setPizzaMenu] = useState(PizzaMenu);
   const [pizzaMenu, setPizzaMenu] = useState(null);
   const { cartData, setCartData } = useContext(CartContext);
