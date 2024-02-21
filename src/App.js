@@ -1,48 +1,60 @@
-import React, { useState } from 'react';
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, NavLink, Outlet} from 'react-router-dom'
-import ReactDOM from 'react-dom';
+import React, { useState } from "react";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+  NavLink,
+  Outlet,
+} from "react-router-dom";
+import ReactDOM from "react-dom";
 
-import './App.css';
+import "./App.css";
 
-import Navbar from './components/Navbar';
+import Navbar from "./components/Navbar";
 import MenuScreen from "./pages/MenuScreen";
-import  HomeScreen  from './pages/HomeScreen';
-import LoginScreen from './pages/LoginScreen';
-import CartScreen from './pages/CartScreen';
+import HomeScreen from "./pages/HomeScreen";
+import LoginScreen from "./pages/LoginScreen";
+import CartScreen from "./pages/CartScreen";
 
+import Signup from "./pages/Signup";
 
-function App()
-{
-  const [cartData, setCartData] = useState([])
+function App() {
+  const [cartData, setCartData] = useState([]);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<RootLayout cartData={cartData} />}>
+      <Route path="/" element={<RootLayout  />}>
         {/* outlet */}
-          <Route index element={<HomeScreen />} />
-          <Route path="menu" element={<MenuScreen cartData={cartData} setCartData={setCartData} />} />
-          <Route path="login" element={<LoginScreen />} />
-          <Route path="cart" element={<CartScreen cartData={cartData} setCartData={setCartData} />} />
+        <Route index element={<HomeScreen />} />
+        <Route
+          path="menu"
+          element={<MenuScreen   />}
+        />
+        <Route path="login" element={<LoginScreen />} />
+        <Route
+          path="cart"
+          element={<CartScreen   />}
+        />
+        <Route path="Signup" element={<Signup />} />
         {/* outlet */}
       </Route>
     )
-  )
+  );
 
-  return(
-      <RouterProvider router={router} />
-    );
-  }
+  return <RouterProvider router={router} />;
+}
 export default App;
 
-
 // RouterLayout and Component
-const RootLayout = ({cartData}) =>
-{
-  return(
+const RootLayout = ({ cartData }) => {
+  return (
     <>
-      {ReactDOM.createPortal(<Navbar cartData={cartData} />, document.getElementById('navbar-container'))}
+      {ReactDOM.createPortal(
+        <Navbar cartData={cartData} />,
+        document.getElementById("navbar-container")
+      )}
       <Outlet />
     </>
-  )
-}
-
+  );
+};
