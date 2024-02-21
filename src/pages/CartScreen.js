@@ -30,7 +30,7 @@ function loadScript(src) {
 
 const CartScreen = () => {
   const { cartData, setCartData } = useContext(CartContext);
-  const endpoint = "http://localhost/checkout";
+  const endpoint = "https://duo3guoh9g.execute-api.ap-south-1.amazonaws.com/staging/checkout";
   const [total, setTotal] = useState(0);
   const [showToast, setShowToast] = useState(false);
   const [modelBody, setModelBody] = useState("");
