@@ -29,8 +29,10 @@ function loadScript(src) {
 }
 
 const CartScreen = () => {
+  let res = loadScript("https://checkout.razorpay.com/v1/checkout.js");
   const { cartData, setCartData } = useContext(CartContext);
-  const endpoint = "https://duo3guoh9g.execute-api.ap-south-1.amazonaws.com/staging/checkout";
+  const endpoint =
+    "https://duo3guoh9g.execute-api.ap-south-1.amazonaws.com/staging/checkout";
   const [total, setTotal] = useState(0);
   const [showToast, setShowToast] = useState(false);
   const [modelBody, setModelBody] = useState("");
@@ -44,7 +46,7 @@ const CartScreen = () => {
   useEffect(() => {
     let element = document.getElementById("root");
     element.classList.remove("my-auto");
-    console.log(cartData);
+    //console.log(cartData);
 
     let pageTitle = document.getElementById("pageTitle");
     pageTitle.innerHTML = "Cart";
@@ -93,10 +95,7 @@ const CartScreen = () => {
 
   const postData = async () => {
     try {
-      const response = await axios.post(endpoint, {
-        amount: total * 100,
-        currency: "INR",
-      });
+      const response = await axios.post(endpoint, cartData);
       setResponseData(response.data);
       console.log("Order created successfully:", response.data);
     } catch (error) {
@@ -111,9 +110,7 @@ const CartScreen = () => {
   }, [responseData]);
 
   async function displayRazorpay() {
-    const res = await loadScript(
-      "https://checkout.razorpay.com/v1/checkout.js"
-    );
+    //res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
 
     if (!res) {
       alert("Razorpay SDK failed to load. Are you online?");

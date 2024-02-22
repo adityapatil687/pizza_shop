@@ -57,6 +57,22 @@ const CartCard = ({ data, showToastMessage }) => {
 
               <div className="row">
                 <div className="col-5">
+                  <div className="">Size</div>
+                </div>
+
+                <div className="col-5 ">
+                  <div>{data.size}</div>
+                </div>
+                <button
+                  className="col-1 me-3 btn btn-sm btn-success"
+                  onClick={deleteHandler}
+                >
+                  X
+                </button>
+              </div>
+
+              <div className="row">
+                <div className="col-5">
                   <div className="">Quantity</div>
                 </div>
                 <div className="col-5">
@@ -87,12 +103,6 @@ const CartCard = ({ data, showToastMessage }) => {
                     </button>
                   </div>
                 </div>
-                <button
-                  className="col-1 me-3 btn btn-sm btn-success"
-                  onClick={deleteHandler}
-                >
-                  X
-                </button>
               </div>
             </div>
           </div>
