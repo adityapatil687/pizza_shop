@@ -125,7 +125,7 @@ const CartScreen = () => {
       order_id: responseData.order_id,
       name: "Pizza Place",
       description: "Plese make a payment",
-      image: "https://your-company-logo.png",
+      image: "https://pizzaplace7874.s3.ap-south-1.amazonaws.com/PizzaPlaceAssets/8701016.jpg",
 
       handler: async function (response) {
         alert(response.razorpay_payment_id);
