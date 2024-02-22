@@ -14,25 +14,11 @@ import { UserStateContext } from "../context/UserStateContextProvider";
 import ModalBody from "react-bootstrap/esm/ModalBody";
 import axios from "axios";
 
-function loadScript(src) {
-  return new Promise((resolve) => {
-    const script = document.createElement("script");
-    script.src = src;
-    script.onload = () => {
-      resolve(true);
-    };
-    script.onerror = () => {
-      resolve(false);
-    };
-    document.body.appendChild(script);
-  });
-}
+
 
 const CartScreen = () => {
-  let res = loadScript("https://checkout.razorpay.com/v1/checkout.js");
   const { cartData, setCartData } = useContext(CartContext);
-  const endpoint =
-    "https://duo3guoh9g.execute-api.ap-south-1.amazonaws.com/staging/checkout";
+  const endpoint = "https://duo3guoh9g.execute-api.ap-south-1.amazonaws.com/staging/checkout";
   const [total, setTotal] = useState(0);
   const [showToast, setShowToast] = useState(false);
   const [modelBody, setModelBody] = useState("");
@@ -42,6 +28,21 @@ const CartScreen = () => {
   const handleShow = () => setShow(true);
 
   const { isSignedIn, setIsSignedIn } = useContext(UserStateContext);
+
+  function loadScript(src) {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  }
+  let res = loadScript("https://checkout.razorpay.com/v1/checkout.js");
 
   useEffect(() => {
     let element = document.getElementById("root");
