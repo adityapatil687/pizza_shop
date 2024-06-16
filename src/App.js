@@ -16,27 +16,29 @@ import MenuScreen from "./pages/MenuScreen";
 import HomeScreen from "./pages/HomeScreen";
 import LoginScreen from "./pages/LoginScreen";
 import CartScreen from "./pages/CartScreen";
+import ProfileScreen from "./pages/Profile";
 
 import Signup from "./pages/Signup";
 
+
+
+
+import { Amplify } from "aws-amplify";
+import awsmobile from "./aws-exports";
+Amplify.configure(awsmobile);
 function App() {
   const [cartData, setCartData] = useState([]);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<RootLayout  />}>
+      <Route path="/" element={<RootLayout />}>
         {/* outlet */}
         <Route index element={<HomeScreen />} />
-        <Route
-          path="menu"
-          element={<MenuScreen   />}
-        />
+        <Route path="menu" element={<MenuScreen />} />
         <Route path="login" element={<LoginScreen />} />
-        <Route
-          path="cart"
-          element={<CartScreen   />}
-        />
-        <Route path="Signup" element={<Signup />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="cart" element={<CartScreen />} />
+        <Route path="profile" element={<ProfileScreen />} />
         {/* outlet */}
       </Route>
     )

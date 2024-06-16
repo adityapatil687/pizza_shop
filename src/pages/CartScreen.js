@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import "./CartScreen.css";
-import { json, Link } from "react-router-dom";
+import { json, Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import CartCard from "../components/CartCard";
 import Checkout from "../components/Checkout";
@@ -11,20 +11,24 @@ import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-bootstrap/Modal";
 
 import { UserStateContext } from "../context/UserStateContextProvider";
-import ModalBody from "react-bootstrap/esm/ModalBody";
+
 import axios from "axios";
-
-
 
 const CartScreen = () => {
   const { cartData, setCartData } = useContext(CartContext);
-  const endpoint = "https://duo3guoh9g.execute-api.ap-south-1.amazonaws.com/staging/checkout";
+  const endpoint =
+    "https://duo3guoh9g.execute-api.ap-south-1.amazonaws.com/staging/checkout";
   const [total, setTotal] = useState(0);
   const [showToast, setShowToast] = useState(false);
   const [modelBody, setModelBody] = useState("");
   const [show, setShow] = useState(false);
   const [responseData, setResponseData] = useState(null);
-  const handleClose = () => setShow(false);
+  const navigate = useNavigate();
+
+  const handleClose = () => {
+    setShow(false);
+    navigate("/login");
+  };
   const handleShow = () => setShow(true);
 
   const { isSignedIn, setIsSignedIn } = useContext(UserStateContext);
@@ -61,13 +65,13 @@ const CartScreen = () => {
     setTotal(newTotal);
   }, [cartData]);
 
-  const deleteHandler = (id) => {
-    const updatedCartData = cartData.filter((obj) => obj.id !== id);
-    setCartData(updatedCartData);
-  };
+  // const deleteHandler = (id) => {
+  //   const updatedCartData = cartData.filter((obj) => obj.id !== id);
+  //   setCartData(updatedCartData);
+  // };
 
-  const showToastMessage = () => {
-    toast.success("Removed from cart", {
+  const showToastMessage = (str) => {
+    toast.success(str, {
       position: toast.POSITION.BOTTOM_RIGHT,
       className: "border rounded bg-light-subtle text-light-emphasis mb-5",
       autoClose: 1000,
@@ -85,7 +89,7 @@ const CartScreen = () => {
         await postData();
         //await displayRazorpay();
       } else {
-        setModelBody("Bhain login krle pehle !");
+        setModelBody("Bhai login krle pehle !");
         setShow(true);
       }
     } else {
@@ -125,7 +129,8 @@ const CartScreen = () => {
       order_id: responseData.order_id,
       name: "Pizza Place",
       description: "Plese make a payment",
-      image: "https://pizzaplace7874.s3.ap-south-1.amazonaws.com/PizzaPlaceAssets/8701016.jpg",
+      image:
+        "https://d1skhftcq2dyo4.cloudfront.net/PizzaPlaceAssets/8701016.jpg",
 
       handler: async function (response) {
         alert(response.razorpay_payment_id);
@@ -166,7 +171,34 @@ const CartScreen = () => {
       <div className="cart-screen" data-aos="fade-up" data-aos-duration="1000">
         <div className="cart-items">
           {cartData !== null && cartData.length > 0 ? (
-            cartData.map((obj) => {
+            cartData.map((obj, index) => {
+              return (
+                <CartCard
+                  key={Math.random()}
+                  data={obj}
+                  // deleteHandler={deleteHandler}
+                  showToastMessage={showToastMessage}
+                  listId={index}
+                />
+              );
+            })
+          ) : (
+            <div className="text-center">
+              <p>Your cart is empty</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* 
+          {cartData !== null && cartData.length > 0 ? (
+        <div
+          className="cart-screen"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <div className="cart-items">
+            {cartData.map((obj) => {
               return (
                 <CartCard
                   key={obj.id}
@@ -175,12 +207,15 @@ const CartScreen = () => {
                   showToastMessage={showToastMessage}
                 />
               );
-            })
-          ) : (
-            <p className="text-center">Your cart is empty</p>
-          )}
+            })}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="text-center">
+          <p>Your cart is empty</p>
+        </div>
+      )}
+      */}
       <ToastContainer />
       {ReactDOM.createPortal(
         <Checkout total={total} placeOrder={placeOrder} />,

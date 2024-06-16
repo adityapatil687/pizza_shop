@@ -1,41 +1,44 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContextProvider";
 
-const CartCard = ({ data, showToastMessage }) => {
+const CartCard = ({ data, showToastMessage, listId }) => {
   const { cartData, setCartData } = useContext(CartContext);
-
   const [quantity, setQuantity] = useState(data.quantity);
 
-  useEffect(() => {
-    const updatedCartData = cartData.map((item) => {
-      if (item.id === data.id && item.size === data.size) {
-        return { ...item, quantity };
-      }
-      return item;
-    });
-    setCartData(updatedCartData);
-  }, [quantity]);
-
-  const incrementHandler = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const decrementHandler = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
+  const updateQuantity = (newQuantity) => {
+    if (listId >= 0 && listId < cartData.length) {
+      const updatedCartData = [...cartData];
+      updatedCartData[listId].quantity = newQuantity;
+      setCartData(updatedCartData); // Update the cartData with the new array
     }
   };
 
   const deleteHandler = () => {
-    const updatedCartData = cartData.filter(
-      (item) => item.id !== data.id || item.size !== data.size
-    );
+    const updatedCartData = [
+      ...cartData.slice(0, listId),
+      ...cartData.slice(listId + 1),
+    ];
     setCartData(updatedCartData);
+    showToastMessage("Removed from cart");
+  };
+
+  const incrementQuantity = () => {
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    updateQuantity(newQuantity);
+  };
+
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      const newQuantity = quantity - 1;
+      setQuantity(newQuantity);
+      updateQuantity(newQuantity);
+    }
   };
 
   return (
     <div className="mb-4">
-      <div className="d-flex justify-content-center ">
+      <div className="d-flex justify-content-center">
         <div className="col-12 col-md-8 col-lg-6 border rounded-5 p-3 bg-light-subtle">
           <div className="row">
             <div className="col-4 col-md-3">
@@ -81,7 +84,7 @@ const CartCard = ({ data, showToastMessage }) => {
                       type="button"
                       className="btn btn-outline-success"
                       style={{ height: 29, width: 29 }}
-                      onClick={incrementHandler}
+                      onClick={incrementQuantity}
                     >
                       +
                     </button>
@@ -91,13 +94,14 @@ const CartCard = ({ data, showToastMessage }) => {
                       step="1"
                       min="1"
                       max="99"
-                      className=" text-center border border-success"
+                      className="text-center border border-success"
+                      readOnly
                     />
                     <button
                       type="button"
                       className="btn btn-outline-success"
                       style={{ height: 29, width: 29 }}
-                      onClick={decrementHandler}
+                      onClick={decrementQuantity}
                     >
                       -
                     </button>
