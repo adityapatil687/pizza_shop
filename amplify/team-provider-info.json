@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-pizzaplace-dev-7184d-authRole",
+      "UnauthRoleArn": "arn:aws:iam::782356419707:role/amplify-pizzaplace-dev-7184d-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::782356419707:role/amplify-pizzaplace-dev-7184d-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-pizzaplace-dev-7184d-deployment",
+      "UnauthRoleName": "amplify-pizzaplace-dev-7184d-unauthRole",
+      "StackName": "amplify-pizzaplace-dev-7184d",
+      "StackId": "arn:aws:cloudformation:ap-south-1:782356419707:stack/amplify-pizzaplace-dev-7184d/c9d3c391-2ceb-11ef-8049-02c9624a1bf1",
+      "AmplifyAppId": "da6zqksrfu1hs"
+    }
+  }
+}

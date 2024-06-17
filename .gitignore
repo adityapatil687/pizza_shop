@@ -26,10 +26,10 @@ yarn-error.log*
 .env
 
 #aws
-aws-exports.js
-/amplify
-/.vscode
-amplifyconfiguration.json
+# aws-exports.js
+# /amplify
+# /.vscode
+# amplifyconfiguration.json
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
