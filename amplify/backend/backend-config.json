@@ -1,1 +1,44 @@
-{}
+{
+  "api": {
+    "pizzaplace": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "menu"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "menu": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_menu_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "menu"
+        }
+      ]
+    },
+    "AMPLIFY_function_menu_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "menu"
+        }
+      ]
+    }
+  }
+}

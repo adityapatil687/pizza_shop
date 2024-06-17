@@ -10,6 +10,17 @@
       "StackName": "amplify-pizzaplace-dev-7184d",
       "StackId": "arn:aws:cloudformation:ap-south-1:782356419707:stack/amplify-pizzaplace-dev-7184d/c9d3c391-2ceb-11ef-8049-02c9624a1bf1",
       "AmplifyAppId": "da6zqksrfu1hs"
+    },
+    "categories": {
+      "function": {
+        "menu": {
+          "deploymentBucketName": "amplify-pizzaplace-dev-7184d-deployment",
+          "s3Key": "amplify-builds/menu-5272314831504863594d-build.zip"
+        }
+      },
+      "api": {
+        "pizzaplace": {}
+      }
     }
   }
 }
