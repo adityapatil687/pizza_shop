@@ -21,11 +21,6 @@ import ProfileScreen from "./pages/Profile";
 import Signup from "./pages/Signup";
 
 
-
-
-import { Amplify } from "aws-amplify";
-import awsmobile from "./aws-exports";
-Amplify.configure(awsmobile);
 function App() {
   const [cartData, setCartData] = useState([]);
 

@@ -1,11 +1,10 @@
 import { NavLink } from "react-router-dom";
-import { signIn } from "aws-amplify/auth";
-import { fetchAuthSession } from "aws-amplify/auth";
 import Toast from "react-bootstrap/Toast";
 import "./LoginScreen.css";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserStateContext } from "../context/UserStateContextProvider";
+
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,47 +21,8 @@ const LoginScreen = () => {
     pageTitle.innerHTML = "Login";
   }, []);
 
-  // useEffect(() => {
-  //   if (isSignedIn === true) {
-  //     currentSession();
-  //   }
-  // }, [isSignedIn]);
-  const handleSignIn = async (e) => {
-    // e.preventDefault();
-    try {
-      await signIn({
-        username: email,
-        password: password,
-      });
-      setToastMessage("Signed in successfully");
-      await currentSession();
-      // Redirect or navigate to the desired page upon successful sign-in
-      setIsSuccess(true);
-      setShowToast(true);
-      setIsSignedIn(true);
-
-      setTimeout(async () => {
-        await currentSession();
-        navigate("/menu");
-      }, 1000); // Adjust the delay as needed
-    } catch (error) {
-      console.error("Error signing in:", error);
-      setToastMessage(error.message);
-      setIsSuccess(true);
-      setShowToast(true);
-      // Handle sign-in error, display error message to user
-    }
-  };
-  async function currentSession() {
-    try {
-      const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
-      console.log(
-        "accessToken => " + accessToken + " " + "idToken => " + idToken
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  
+ 
   return (
     <>
       <Toast
@@ -133,7 +93,7 @@ const LoginScreen = () => {
           className="w-100 btn btn-lg btn-success mb-3"
           id="signInBtn"
           type="submit"
-          onClick={handleSignIn}
+          onClick={()=>{}}
         >
           Sign in
         </button>

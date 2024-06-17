@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signUp } from "aws-amplify/auth";
+
 import Toast from "react-bootstrap/Toast";
 
 const Signup = () => {
@@ -23,66 +23,6 @@ const Signup = () => {
     pageTitle.innerHTML = "Signup";
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const errors = {};
-    const namePattern = /^[a-zA-Z]+$/;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordPattern =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
-
-    if (!namePattern.test(firstName.trim())) {
-      errors.firstName = "First Name should contain only alphabets";
-    }
-    if (!namePattern.test(lastName.trim())) {
-      errors.lastName = "Last Name should contain only alphabets";
-    }
-    if (!address.trim()) {
-      errors.address = "Address is required";
-    }
-    if (!email.trim()) {
-      errors.email = "Email is required";
-    } else if (!emailPattern.test(email)) {
-      errors.email = "Invalid email address";
-    }
-    if (!password.trim()) {
-      errors.password = "Password is required";
-    } else if (!passwordPattern.test(password)) {
-      errors.password =
-        "Password should contain at least 8 characters with at least one uppercase letter, one lowercase letter, one digit, and one special symbol (!@#$%^&*)";
-    }
-
-    if (Object.keys(errors).length === 0) {
-      try {
-        const { userId } = await signUp({
-          username: email,
-          password: password,
-          options: {
-            userAttributes: {
-              email: email,
-              address: address,
-              name: firstName + " " + lastName,
-            },
-          },
-          //autoSignIn: true
-        });
-        console.log("Sign up successful ", userId);
-        setToastMessage("Signup successful");
-        setIsSuccess(true);
-        setShowToast(true);
-        // Redirect user to login screen after successful signup
-        navigate("/login");
-      } catch (error) {
-        console.error("Error signing up:", error);
-        setToastMessage(error.message);
-        setIsSuccess(false);
-        setShowToast(true);
-      }
-    } else {
-      setErrors(errors);
-    }
-  };
-
   return (
     <>
       <Toast
@@ -103,7 +43,7 @@ const Signup = () => {
       </Toast>
       <form
         className="col-12 col-sm-10 col-md-6 mx-auto bg-light-subtle p-4 rounded border"
-        onSubmit={handleSubmit}
+        onSubmit={()=>{}}
       >
         <div className="mb-3">
           <label htmlFor="firstName" className="form-label">
