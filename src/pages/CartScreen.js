@@ -17,7 +17,7 @@ import axios from "axios";
 const CartScreen = () => {
   const { cartData, setCartData } = useContext(CartContext);
   const endpoint =
-    "https://duo3guoh9g.execute-api.ap-south-1.amazonaws.com/staging/checkout";
+    "https://3wx7xxkx55.execute-api.ap-south-1.amazonaws.com/dev/checkout";
   const [total, setTotal] = useState(0);
   const [showToast, setShowToast] = useState(false);
   const [modelBody, setModelBody] = useState("");
