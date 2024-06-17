@@ -9,6 +9,14 @@
           ],
           "category": "function",
           "resourceName": "menu"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "checkout"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -16,6 +24,11 @@
     }
   },
   "function": {
+    "checkout": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "menu": {
       "build": true,
       "dependsOn": [],
@@ -24,6 +37,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_checkout_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "checkout"
+        }
+      ]
+    },
+    "AMPLIFY_function_checkout_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "checkout"
+        }
+      ]
+    },
     "AMPLIFY_function_menu_deploymentBucketName": {
       "usedBy": [
         {

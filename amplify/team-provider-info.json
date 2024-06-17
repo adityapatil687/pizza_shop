@@ -16,6 +16,10 @@
         "menu": {
           "deploymentBucketName": "amplify-pizzaplace-dev-7184d-deployment",
           "s3Key": "amplify-builds/menu-5272314831504863594d-build.zip"
+        },
+        "checkout": {
+          "deploymentBucketName": "amplify-pizzaplace-dev-7184d-deployment",
+          "s3Key": "amplify-builds/checkout-415175625a3042557954-build.zip"
         }
       },
       "api": {
