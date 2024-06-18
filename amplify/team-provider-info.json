@@ -1,25 +1,25 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-pizzaplace-dev-7184d-authRole",
-      "UnauthRoleArn": "arn:aws:iam::782356419707:role/amplify-pizzaplace-dev-7184d-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::782356419707:role/amplify-pizzaplace-dev-7184d-authRole",
+      "AuthRoleName": "amplify-pizzaplace-dev-a90fd-authRole",
+      "UnauthRoleArn": "arn:aws:iam::782356419707:role/amplify-pizzaplace-dev-a90fd-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::782356419707:role/amplify-pizzaplace-dev-a90fd-authRole",
       "Region": "ap-south-1",
-      "DeploymentBucketName": "amplify-pizzaplace-dev-7184d-deployment",
-      "UnauthRoleName": "amplify-pizzaplace-dev-7184d-unauthRole",
-      "StackName": "amplify-pizzaplace-dev-7184d",
-      "StackId": "arn:aws:cloudformation:ap-south-1:782356419707:stack/amplify-pizzaplace-dev-7184d/c9d3c391-2ceb-11ef-8049-02c9624a1bf1",
-      "AmplifyAppId": "da6zqksrfu1hs"
+      "DeploymentBucketName": "amplify-pizzaplace-dev-a90fd-deployment",
+      "UnauthRoleName": "amplify-pizzaplace-dev-a90fd-unauthRole",
+      "StackName": "amplify-pizzaplace-dev-a90fd",
+      "StackId": "arn:aws:cloudformation:ap-south-1:782356419707:stack/amplify-pizzaplace-dev-a90fd/e162dc60-2d79-11ef-8bc4-0a20eccd5df9",
+      "AmplifyAppId": "d3ci7nu52r2fwa"
     },
     "categories": {
       "function": {
         "menu": {
-          "deploymentBucketName": "amplify-pizzaplace-dev-7184d-deployment",
-          "s3Key": "amplify-builds/menu-6d543264666d67464c77-build.zip"
+          "deploymentBucketName": "amplify-pizzaplace-dev-a90fd-deployment",
+          "s3Key": "amplify-builds/menu-52355059474773443766-build.zip"
         },
         "checkout": {
-          "deploymentBucketName": "amplify-pizzaplace-dev-7184d-deployment",
-          "s3Key": "amplify-builds/checkout-3475434d545a42364f6d-build.zip"
+          "deploymentBucketName": "amplify-pizzaplace-dev-a90fd-deployment",
+          "s3Key": "amplify-builds/checkout-67675a464b626657776a-build.zip"
         }
       },
       "api": {

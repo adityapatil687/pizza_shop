@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "pizzaplaceLambdaRolee020fc6d",
+            "pizzaplaceLambdaRoleb77c450a",
             {
               "Fn::Join": [
                 "",
                 [
-                  "pizzaplaceLambdaRolee020fc6d",
+                  "pizzaplaceLambdaRoleb77c450a",
                   "-",
                   {
                     "Ref": "env"
