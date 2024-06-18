@@ -15,11 +15,11 @@
       "function": {
         "menu": {
           "deploymentBucketName": "amplify-pizzaplace-dev-7184d-deployment",
-          "s3Key": "amplify-builds/menu-5272314831504863594d-build.zip"
+          "s3Key": "amplify-builds/menu-6d543264666d67464c77-build.zip"
         },
         "checkout": {
           "deploymentBucketName": "amplify-pizzaplace-dev-7184d-deployment",
-          "s3Key": "amplify-builds/checkout-415175625a3042557954-build.zip"
+          "s3Key": "amplify-builds/checkout-3475434d545a42364f6d-build.zip"
         }
       },
       "api": {
